@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Témoignages VBG</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --rose: #9B2255;
+    --rose-light: #f7eaf1;
+    --rose-mid: #c4567a;
+    --rose-pale: #fdf4f8;
+    --ink: #1a1118;
+    --ink-muted: #5c4d57;
+    --ink-faint: #9c8a94;
+    --border: #e8d8e1;
+    --white: #ffffff;
+    --success: #2d6a4f;
+    --success-bg: #eaf4ee;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--rose-pale);
+    color: var(--ink);
+    min-height: 100vh;
+    padding: 0;
+  }
+
+  /* ── Header ── */
+  .hero {
+    background: var(--rose);
+    color: white;
+    padding: 3.5rem 2rem 2.5rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 40px,
+      rgba(255,255,255,0.03) 40px,
+      rgba(255,255,255,0.03) 41px
+    );
+  }
+  .hero-badge {
+    display: inline-block;
+    border: 1px solid rgba(255,255,255,0.35);
+    color: rgba(255,255,255,0.85);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 5px 14px;
+    border-radius: 20px;
+    margin-bottom: 1.2rem;
+    position: relative;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(1.6rem, 5vw, 2.4rem);
+    font-weight: 600;
+    line-height: 1.25;
+    margin-bottom: 0.75rem;
+    position: relative;
+  }
+  .hero p {
+    font-size: 15px;
+    color: rgba(255,255,255,0.78);
+    max-width: 480px;
+    margin: 0 auto;
+    line-height: 1.65;
+    position: relative;
+  }
+
+  /* ── Privacy banner ── */
+  .privacy-banner {
+    background: var(--white);
+    border-left: 4px solid var(--rose-mid);
+    margin: 2rem auto;
+    max-width: 680px;
+    padding: 14px 20px;
+    border-radius: 0 10px 10px 0;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    box-shadow: 0 2px 12px rgba(155,34,85,0.08);
+  }
+  .privacy-icon { font-size: 20px; margin-top: 1px; flex-shrink: 0; }
+  .privacy-banner p { font-size: 13px; color: var(--ink-muted); line-height: 1.6; }
+  .privacy-banner strong { color: var(--rose); }
+
+  /* ── Form card ── */
+  .form-card {
+    background: var(--white);
+    max-width: 680px;
+    margin: 0 auto 3rem;
+    border-radius: 16px;
+    box-shadow: 0 4px 32px rgba(155,34,85,0.09);
+    overflow: hidden;
+  }
+
+  .section {
+    padding: 2rem 2.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .section:last-child { border-bottom: none; }
+
+  .section-label {
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--rose);
+    font-weight: 500;
+    margin-bottom: 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  .field { margin-bottom: 1.4rem; }
+  .field:last-child { margin-bottom: 0; }
+
+  label.field-label {
+    display: block;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--ink);
+    margin-bottom: 5px;
+  }
+  label.field-label .opt {
+    font-weight: 300;
+    color: var(--ink-faint);
+    font-size: 12px;
+    margin-left: 4px;
+  }
+  label.field-label .req { color: var(--rose-mid); margin-left: 2px; }
+
+  .field-hint {
+    font-size: 12px;
+    color: var(--ink-faint);
+    margin-bottom: 8px;
+    line-height: 1.5;
+  }
+
+  input[type="text"],
+  input[type="email"],
+  select,
+  textarea {
+    width: 100%;
+    padding: 10px 14px;
+    border: 1.5px solid var(--border);
+    border-radius: 8px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    color: var(--ink);
+    background: var(--white);
+    transition: border-color 0.2s, box-shadow 0.2s;
+    outline: none;
+    appearance: none;
+  }
+  input[type="text"]:focus,
+  input[type="email"]:focus,
+  select:focus,
+  textarea:focus {
+    border-color: var(--rose-mid);
+    box-shadow: 0 0 0 3px rgba(155,34,85,0.1);
+  }
+  select { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%239c8a94' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 14px center; padding-right: 36px; }
+  textarea { min-height: 110px; resize: vertical; line-height: 1.6; }
+
+  /* Radio & Checkbox */
+  .choice-list { display: flex; flex-direction: column; gap: 8px; }
+  .choice-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 14px;
+    border: 1.5px solid var(--border);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: border-color 0.15s, background 0.15s;
+    background: var(--white);
+  }
+  .choice-row:hover { border-color: var(--rose-mid); background: var(--rose-light); }
+  .choice-row input[type="radio"],
+  .choice-row input[type="checkbox"] {
+    width: 17px; height: 17px;
+    accent-color: var(--rose);
+    flex-shrink: 0;
+    padding: 0;
+    border: none;
+  }
+  .choice-row span { font-size: 14px; color: var(--ink); line-height: 1.4; }
+
+  .choice-row.selected {
+    border-color: var(--rose);
+    background: var(--rose-light);
+  }
+
+  /* Grid 2 cols for checkboxes */
+  .choice-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+  @media (max-width: 520px) { .choice-grid { grid-template-columns: 1fr; } }
+
+  /* Submit */
+  .submit-zone {
+    padding: 2rem 2.5rem;
+    background: var(--rose-pale);
+    text-align: center;
+  }
+  .submit-btn {
+    background: var(--rose);
+    color: white;
+    border: none;
+    padding: 14px 48px;
+    border-radius: 50px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: transform 0.15s, box-shadow 0.15s, background 0.15s;
+    letter-spacing: 0.02em;
+    box-shadow: 0 4px 16px rgba(155,34,85,0.3);
+  }
+  .submit-btn:hover { background: #7d1a43; transform: translateY(-1px); box-shadow: 0 6px 20px rgba(155,34,85,0.38); }
+  .submit-btn:active { transform: translateY(0); }
+  .submit-note {
+    font-size: 12px;
+    color: var(--ink-faint);
+    margin-top: 12px;
+  }
+
+  /* Success */
+  .success-screen {
+    display: none;
+    text-align: center;
+    padding: 4rem 2rem;
+    animation: fadeIn 0.4s ease;
+  }
+  .success-circle {
+    width: 72px; height: 72px;
+    background: var(--success-bg);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 32px;
+    margin: 0 auto 1.5rem;
+  }
+  .success-screen h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    margin-bottom: 0.75rem;
+    color: var(--success);
+  }
+  .success-screen p { color: var(--ink-muted); font-size: 15px; line-height: 1.65; max-width: 400px; margin: 0 auto; }
+
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+
+  /* Hidden */
+  .hidden { display: none !important; }
+
+  footer {
+    text-align: center;
+    padding: 1.5rem;
+    font-size: 12px;
+    color: var(--ink-faint);
+  }
+
+  @media (max-width: 700px) {
+    .section { padding: 1.5rem 1.25rem; }
+    .submit-zone { padding: 1.5rem 1.25rem; }
+    .privacy-banner { margin: 1.25rem 1rem; }
+    .form-card { margin: 0 1rem 2.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-badge">🎙 Hackathon — Podcast VBG</div>
+  <h1>Partagez votre témoignage</h1>
+  <p>Votre histoire peut changer des vies. Ce podcast brise le silence sur les violences basées sur le genre.</p>
+</header>
+
+<div class="privacy-banner">
+  <span class="privacy-icon">🔒</span>
+  <p><strong>Anonymat garanti.</strong> Aucune donnée personnelle identifiable ne sera publiée. Vous choisissez ce que vous partagez et comment vous souhaitez être représenté·e.</p>
+</div>
+
+<div class="form-card">
+  <div id="form-body">
+
+    <!-- Section 1 -->
+    <div class="section">
+      <div class="section-label">À propos de vous</div>
+
+      <div class="field">
+        <label class="field-label">Genre <span class="opt">(optionnel)</span></label>
+        <div class="choice-list">
+          <label class="choice-row"><input type="radio" name="genre" value="femme"><span>Femme</span></label>
+          <label class="choice-row"><input type="radio" name="genre" value="homme"><span>Homme</span></label>
+          <label class="choice-row"><input type="radio" name="genre" value="non-binaire"><span>Non-binaire / autre identité de genre</span></label>
+          <label class="choice-row"><input type="radio" name="genre" value="np"><span>Préfère ne pas répondre</span></label>
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="field-label">Tranche d'âge <span class="opt">(optionnel)</span></label>
+        <select name="age">
+          <option value="">— Sélectionner —</option>
+          <option>Moins de 18 ans</option>
+          <option>18 – 25 ans</option>
+          <option>26 – 35 ans</option>
+          <option>36 – 50 ans</option>
+          <option>Plus de 50 ans</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label class="field-label">Vous êtes… <span class="req">*</span></label>
+        <div class="choice-list">
+          <label class="choice-row"><input type="radio" name="role" value="survivant"><span>Une personne directement concernée (survivant·e)</span></label>
+          <label class="choice-row"><input type="radio" name="role" value="temoin"><span>Un·e témoin ou proche d'une victime</span></label>
+          <label class="choice-row"><input type="radio" name="role" value="pro"><span>Un·e professionnel·le (médecin, travailleur social, juriste…)</span></label>
+          <label class="choice-row"><input type="radio" name="role" value="militant"><span>Un·e militant·e ou activiste</span></label>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section 2 -->
+    <div class="section">
+      <div class="section-label">Votre témoignage</div>
+
+      <div class="field">
+        <label class="field-label">Type(s) de violence concerné(s) <span class="req">*</span></label>
+        <p class="field-hint">Cochez tout ce qui s'applique à votre situation ou à celle que vous souhaitez aborder.</p>
+        <div class="choice-grid">
+          <label class="choice-row"><input type="checkbox" name="type" value="physique"><span>Violence physique</span></label>
+          <label class="choice-row"><input type="checkbox" name="type" value="sexuelle"><span>Violence sexuelle</span></label>
+          <label class="choice-row"><input type="checkbox" name="type" value="psychologique"><span>Violence psychologique</span></label>
+          <label class="choice-row"><input type="checkbox" name="type" value="economique"><span>Violence économique</span></label>
+          <label class="choice-row"><input type="checkbox" name="type" value="harcelement"><span>Harcèlement (rue, travail, en ligne)</span></label>
+          <label class="choice-row"><input type="checkbox" name="type" value="mariage"><span>Mariage forcé / précoce</span></label>
+          <label class="choice-row"><input type="checkbox" name="type" value="mgf"><span>Mutilations génitales</span></label>
+          <label class="choice-row"><input type="checkbox" name="type" value="autre"><span>Autre</span></label>
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="field-label">Votre récit <span class="req">*</span></label>
+        <p class="field-hint">Partagez votre histoire, vos ressentis, ou ce que vous souhaitez que les auditeurs comprennent. Écrivez librement, à votre rythme.</p>
+        <textarea name="recit" placeholder="Écrivez ici..."></textarea>
+      </div>
+
+      <div class="field">
+        <label class="field-label">Quelles ont été les conséquences sur votre vie ?</label>
+        <p class="field-hint">Émotionnelles, sociales, professionnelles, physiques… (optionnel)</p>
+        <textarea name="consequences" style="min-height: 85px;" placeholder="Facultatif..."></textarea>
+      </div>
+
+      <div class="field">
+        <label class="field-label">Avez-vous cherché de l'aide ? Si oui, comment cela s'est-il passé ?</label>
+        <div class="choice-list" style="margin-bottom:10px;">
+          <label class="choice-row"><input type="radio" name="aide" value="oui_bien"><span>Oui, j'ai été bien accompagné·e</span></label>
+          <label class="choice-row"><input type="radio" name="aide" value="oui_mal"><span>Oui, mais la prise en charge était insuffisante</span></label>
+          <label class="choice-row"><input type="radio" name="aide" value="non_peur"><span>Non, par peur ou honte</span></label>
+          <label class="choice-row"><input type="radio" name="aide" value="non_info"><span>Non, par manque d'information</span></label>
+          <label class="choice-row"><input type="radio" name="aide" value="non_autre"><span>Non, autre raison</span></label>
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="field-label">Votre message pour les auditeurs</label>
+        <p class="field-hint">Un mot d'espoir, un conseil, un appel à l'action pour les victimes ou pour la société.</p>
+        <textarea name="message" style="min-height: 85px;" placeholder="Votre message..."></textarea>
+      </div>
+    </div>
+
+    <!-- Section 3 -->
+    <div class="section">
+      <div class="section-label">Utilisation &amp; consentement</div>
+
+      <div class="field">
+        <label class="field-label">Acceptez-vous que votre témoignage soit utilisé dans le podcast ? <span class="req">*</span></label>
+        <div class="choice-list">
+          <label class="choice-row"><input type="radio" name="consentement" value="anonyme" onchange="togglePseudo(this)"><span>Oui — de manière totalement anonyme</span></label>
+          <label class="choice-row"><input type="radio" name="consentement" value="pseudonyme" onchange="togglePseudo(this)"><span>Oui — avec un pseudonyme de mon choix</span></label>
+          <label class="choice-row"><input type="radio" name="consentement" value="non" onchange="togglePseudo(this)"><span>Non, pour l'instant (à titre informatif uniquement)</span></label>
+        </div>
+      </div>
+
+      <div class="field hidden" id="pseudo-field">
+        <label class="field-label">Choisissez votre pseudonyme</label>
+        <input type="text" name="pseudonyme" placeholder="Ex : Amina, Témoin 1, K.B...">
+      </div>
+
+      <div class="field">
+        <label class="field-label">Seriez-vous disponible pour un entretien audio ?</label>
+        <p class="field-hint">La voix peut être modifiée électroniquement pour préserver votre anonymat.</p>
+        <div class="choice-list">
+          <label class="choice-row"><input type="radio" name="audio" value="oui" onchange="toggleContact(this)"><span>Oui, je suis disponible</span></label>
+          <label class="choice-row"><input type="radio" name="audio" value="non" onchange="toggleContact(this)"><span>Non, merci</span></label>
+        </div>
+      </div>
+
+      <div class="field hidden" id="contact-field">
+        <label class="field-label">Comment vous contacter ?</label>
+        <p class="field-hint">Email ou numéro WhatsApp — ces informations resteront strictement confidentielles.</p>
+        <input type="text" name="contact" placeholder="Email ou WhatsApp...">
+      </div>
+    </div>
+
+    <!-- Submit -->
+    <div class="submit-zone">
+      <button class="submit-btn" onclick="submitForm()">Envoyer mon témoignage</button>
+      <p class="submit-note">Vos données sont protégées et ne seront jamais vendues ou partagées à des tiers.</p>
+    </div>
+
+  </div><!-- /#form-body -->
+
+  <!-- Success -->
+  <div class="success-screen" id="success-screen">
+    <div class="success-circle">✓</div>
+    <h2>Merci pour votre courage</h2>
+    <p>Votre témoignage a bien été reçu. Chaque voix compte dans la lutte contre les violences basées sur le genre. Ensemble, nous construisons un monde plus juste.</p>
+  </div>
+
+</div><!-- /.form-card -->
+
+<footer>
+  Formulaire créé dans le cadre d'un hackathon de sensibilisation aux VBG &nbsp;·&nbsp; Toutes les réponses sont anonymes
+</footer>
+
+<script>
+  function togglePseudo(el) {
+    document.getElementById('pseudo-field').classList.toggle('hidden', el.value !== 'pseudonyme');
+  }
+  function toggleContact(el) {
+    document.getElementById('contact-field').classList.toggle('hidden', el.value !== 'oui');
+  }
+
+  // Highlight selected choice rows
+  document.querySelectorAll('.choice-row input').forEach(input => {
+    input.addEventListener('change', function() {
+      const name = this.name;
+      if (this.type === 'radio') {
+        document.querySelectorAll(`input[name="${name}"]`).forEach(i => {
+          i.closest('.choice-row').classList.remove('selected');
+        });
+      }
+      this.closest('.choice-row').classList.toggle('selected', this.checked);
+    });
+  });
+
+  function submitForm() {
+    const required = document.querySelector('input[name="role"]:checked') &&
+                     document.querySelector('input[name="consentement"]:checked') &&
+                     document.querySelector('textarea[name="recit"]').value.trim();
+    if (!required) {
+      alert('Merci de remplir les champs obligatoires (marqués d\'une *).');
+      return;
+    }
+    document.getElementById('form-body').style.display = 'none';
+    document.getElementById('success-screen').style.display = 'block';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+</script>
+</body>
+</html>

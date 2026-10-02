@@ -1,0 +1,377 @@
+/* 1. VARIABLES  */
+:root {
+  --green:        #1b8a4c;
+  --green-light:  #25D366;
+  --green-pale:   #e8f5e9;
+  --yellow:       #f9c22b;
+  --red:          #d63031;
+  --red-pale:     #FFEBEE;
+  --blue:         #1565C0;
+  --blue-pale:    #e3f2fd;
+
+  --bg:           #ece5dd;   /* fond de la zone messages */
+  --header-bg:    #075e54;   /* vert foncé WhatsApp-like */
+  --bubble-recv:  #ffffff;   /* bulles reçues */
+  --bubble-sent:  #dcf8c6;   /* bulles envoyées */
+  --text:         #111;
+  --text-muted:   #666;
+  --radius:       14px;
+
+  --font-main:    'Nunito', sans-serif;
+  --font-mono:    'Space Grotesk', monospace;
+}
+
+
+/* 2. RESET & BODY */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-main);
+  background: linear-gradient(135deg, #0a3d2e 0%, #145a45 40%, #1b8a4c 100%);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+
+
+/* 3. CONTENEUR PRINCIPAL */
+.chat-wrapper {
+  width: 100%;
+  max-width: 430px;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+  display: flex;
+  flex-direction: column;
+  height: 92vh;
+  max-height: 820px;
+  background: var(--bg);
+}
+
+
+/* 4. EN-TÊTE  */
+.chat-header {
+  background: var(--header-bg);
+  padding: 14px 16px 10px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--yellow) 0%, #f39c12 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  flex-shrink: 0;
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.3);
+}
+
+.header-info  { flex: 1; }
+.header-name  { color: #fff; font-weight: 800; font-size: 16px; letter-spacing: 0.3px; }
+
+.header-status {
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 2px;
+}
+
+/* Point vert animé dans le statut */
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--green-light);
+  animation: pulse 2s infinite;
+}
+
+
+/* 5. MESSAGES  */
+.chat-messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 14px 12px 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  scroll-behavior: smooth;
+}
+
+/* Scrollbar discrète */
+.chat-messages::-webkit-scrollbar       { width: 4px; }
+.chat-messages::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.15); border-radius: 4px; }
+
+/* Conteneur d'une bulle + heure */
+.msg-wrap {
+  display: flex;
+  flex-direction: column;
+  max-width: 82%;
+}
+.msg-wrap.sent { align-self: flex-end;   align-items: flex-end; }
+.msg-wrap.recv { align-self: flex-start; align-items: flex-start; }
+
+/* Bulle */
+.bubble {
+  padding: 9px 13px;
+  border-radius: var(--radius);
+  font-size: 14px;
+  line-height: 1.5;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.08);
+  word-break: break-word;
+}
+.bubble.recv {
+  background: var(--bubble-recv);
+  border-top-left-radius: 4px;
+  color: var(--text);
+}
+.bubble.sent {
+  background: var(--bubble-sent);
+  border-top-right-radius: 4px;
+  color: var(--text);
+}
+
+/* Heure sous la bulle */
+.msg-time {
+  font-size: 10px;
+  color: var(--text-muted);
+  margin-top: 3px;
+  padding: 0 4px;
+}
+
+
+/* 6. INDICATEUR DE FRAPPE */
+.bubble.typing {
+  padding: 10px 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.bubble.typing span {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  background: #aaa;
+  border-radius: 50%;
+  animation: bounce 1.2s infinite;
+}
+.bubble.typing span:nth-child(2) { animation-delay: 0.2s; }
+.bubble.typing span:nth-child(3) { animation-delay: 0.4s; }
+
+
+/* 7. BOUTONS RAPIDES */
+.quick-replies {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  padding: 8px 10px 4px;
+}
+
+.qr-btn {
+  padding: 7px 13px;
+  background: #fff;
+  border: 1.5px solid var(--green);
+  color: var(--green);
+  border-radius: 20px;
+  font-family: var(--font-main);
+  font-weight: 700;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.18s;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+}
+.qr-btn:hover:not(:disabled) {
+  background: var(--green);
+  color: #fff;
+  transform: translateY(-1px);
+}
+.qr-btn:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+
+
+/* 8. CARTES */
+.resource-card {
+  background: var(--blue-pale);
+  border-left: 3px solid var(--blue);
+  border-radius: 10px;
+  padding: 10px 13px;
+  font-size: 13px;
+  margin-top: 5px;
+  line-height: 1.5;
+}
+.resource-card .rc-num {
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--blue);
+  letter-spacing: 0.5px;
+  font-family: var(--font-mono);
+}
+.resource-card .rc-desc {
+  color: var(--text-muted);
+  font-size: 12px;
+  margin-top: 2px;
+}
+
+/*badge*/
+.badge-card {
+  background: linear-gradient(135deg, #fff8e1 0%, #fffde7 100%);
+  border: 2px solid var(--yellow);
+  border-radius: 12px;
+  padding: 12px 15px;
+  text-align: center;
+}
+.badge-title {
+  font-weight: 800;
+  font-size: 15px;
+  color: #5d4037;
+}
+
+/* podcast */
+.podcast-card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 11px 13px;
+  margin-top: 6px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+  border-left: 3px solid var(--green);
+  width: 100%;
+}
+.podcast-card .pod-ep {
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--green);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 3px;
+}
+.podcast-card .pod-title {
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--text);
+  line-height: 1.3;
+  margin-bottom: 4px;
+}
+.podcast-card .pod-desc {
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.podcast-card audio {
+  width: 100%;
+  height: 32px;
+  border-radius: 8px;
+  outline: none;
+}
+.podcast-card audio::-webkit-media-controls-panel {
+  background: var(--green-pale);
+}
+
+/* Bouton tous les podcasts" */
+.see-all-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--green);
+  color: #fff;
+  text-decoration: none;
+  padding: 9px 16px;
+  border-radius: 20px;
+  font-family: var(--font-main);
+  font-weight: 700;
+  font-size: 13px;
+  margin-top: 6px;
+  transition: all 0.18s;
+  box-shadow: 0 2px 8px rgba(27,138,76,0.3);
+}
+.see-all-link:hover {
+  background: #145a3a;
+  transform: translateY(-1px);
+}
+
+
+/* 9. BARRE DE SAISIE */
+.chat-input-bar {
+  background: #f0f0f0;
+  padding: 10px 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+  border-top: 1px solid rgba(0,0,0,0.08);
+}
+
+#dotom-input {
+  flex: 1;
+  border: none;
+  border-radius: 24px;
+  padding: 10px 16px;
+  font-family: var(--font-main);
+  font-size: 14px;
+  background: #fff;
+  outline: none;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.07);
+}
+
+.send-btn {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: var(--green);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: background 0.18s, transform 0.1s;
+  box-shadow: 0 2px 8px rgba(27,138,76,0.3);
+}
+.send-btn:hover { background: #145a3a; transform: scale(1.07); }
+.send-btn svg   { fill: #fff; }
+
+
+/* 10. MODE URGENCE */
+.emergency-header {
+  background: var(--red);
+  color: #fff;
+  text-align: center;
+  font-size: 13px;
+  font-weight: 800;
+  padding: 6px;
+  letter-spacing: 1px;
+  animation: emergency-pulse 1.5s infinite;
+}
+
+
+/*ANIMATIONS */
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.4; }
+}
+
+@keyframes bounce {
+  0%, 60%, 100% { transform: translateY(0); }
+  30%           { transform: translateY(-6px); }
+}
+
+@keyframes emergency-pulse {
+  0%,  100% { box-shadow: 0 0 0 0   rgba(214, 48, 49, 0.4); }
+  50%       { box-shadow: 0 0 0 8px rgba(214, 48, 49, 0); }
+}

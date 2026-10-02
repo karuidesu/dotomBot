@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Doto'm — Bot Jeunesse, Paix & Sécurité</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="chat-wrapper">
+
+    <!-- EN-TÊTE -->
+    <div class="chat-header">
+      <div class="avatar">🕊️</div>
+      <div class="header-info">
+        <div class="header-name">Doto'm</div>
+        <div class="header-status">
+          <div class="status-dot"></div>
+          Jeunesse · Paix · Sécurité
+        </div>
+      </div>
+    </div>
+
+    <!-- ZONE DE MESSAGES -->
+    <div class="chat-messages" id="dotom-messages"></div>
+
+    <!-- BARRE DE SAISIE -->
+    <div class="chat-input-bar">
+      <input
+        type="text"
+        id="dotom-input"
+        placeholder="Tapez votre message..."
+        onkeydown="if(event.key==='Enter') sendMsg()"
+      />
+      <button class="send-btn" onclick="sendMsg()" title="Envoyer">
+        <svg width="20" height="20" viewBox="0 0 24 24">
+          <path d="M2 21l21-9L2 3v7l15 2-15 2z"/>
+        </svg>
+      </button>
+    </div>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
